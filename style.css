@@ -19,7 +19,6 @@
   --blue-400: #93a8d8;
   --blue-300: #b4c5e7;
   --blue-200: #cfe0ef;
-  --blue-100: #dced f5;
   --blue-100: #dcedf5;
   --blue-050: #eef7fc;
 
@@ -27,6 +26,9 @@
   --sky-050:  #f2fafd;
   --sky-100:  #e3f3fa;
   --sky-200:  #d3ecf5;
+
+  --cta:      #5670ad;   /* lighter periwinkle, closer to the logo */
+  --cta-dark: #4f68a6;
 
   /* Accent — the pale sky from the logo, not a third colour */
   --accent-ink:  #3d5497;
@@ -202,8 +204,8 @@ a:hover { color: var(--blue-800); }
 .btn:hover { transform: translateY(-2px); }
 .btn:active { transform: translateY(0); }
 
-.btn--primary { background: var(--blue-700); color: #fff; box-shadow: var(--shadow-sm); }
-.btn--primary:hover { background: var(--blue-800); color: #fff; box-shadow: var(--shadow); }
+.btn--primary { background: var(--cta); color: #fff; box-shadow: var(--shadow-sm); }
+.btn--primary:hover { background: var(--cta-dark); color: #fff; box-shadow: var(--shadow); }
 
 .btn--ghost { border-color: var(--blue-300); color: var(--blue-800); background: transparent; }
 .btn--ghost:hover { border-color: var(--blue-700); background: var(--blue-050); color: var(--blue-900); }
@@ -351,9 +353,13 @@ a:hover { color: var(--blue-800); }
 }
 @media (max-width: 900px) { .hero__grid { grid-template-columns: 1fr; } }
 
-.hero__title { margin-bottom: var(--sp-4); }
-.hero__title em {
-  font-style: italic; color: var(--blue-600);
+.hero__title { margin-bottom: var(--sp-4); max-width: 15ch; letter-spacing: -0.025em; }
+.hero__title .hl {
+  font-style: normal; color: var(--cta); position: relative; white-space: nowrap;
+}
+.hero__title .hl::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -0.12em; height: 0.16em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'%3E%3Cpath d='M2 6 Q 15 1 30 6 T 60 6 T 90 6 T 118 6' fill='none' stroke='%23a8d4e8' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
 }
 .hero__lede { max-width: 52ch; margin-bottom: var(--sp-6); }
 .hero__meta {
@@ -480,24 +486,62 @@ a:hover { color: var(--blue-800); }
 /* --------------------------------------------------------------------------
    10. Fees table
    -------------------------------------------------------------------------- */
-.fees-group { margin-bottom: var(--sp-7); }
-.fees-group h3 {
-  font-size: var(--step-1); padding-bottom: var(--sp-3);
-  border-bottom: 2px solid var(--blue-200); margin-bottom: var(--sp-2);
+/* Quick-jump nav across the fee groups */
+.fee-nav {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
+  padding: var(--sp-4) var(--sp-5); margin-bottom: var(--sp-6);
+  background: var(--sky-050); border: 1px solid var(--sky-200); border-radius: var(--radius);
 }
-.fees-table { width: 100%; border-collapse: collapse; }
-.fees-table caption { text-align: left; color: var(--ink-500); font-size: 0.95rem;
-                      padding-bottom: var(--sp-3); }
-.fees-table th, .fees-table td { text-align: left; padding: 0.85rem 0.5rem; }
-.fees-table th { font-weight: 500; color: var(--ink-700); }
-.fees-table td.price {
-  text-align: right; font-weight: 600; color: var(--blue-800);
-  font-variant-numeric: tabular-nums; white-space: nowrap;
+.fee-nav__label { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--ink-400); margin-right: 0.25rem; }
+.fee-nav a {
+  font-size: 0.9rem; font-weight: 500; text-decoration: none; color: var(--blue-700);
+  padding: 0.35rem 0.8rem; border-radius: 999px; background: #fff;
+  border: 1px solid var(--blue-100); transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
-.fees-table tbody tr { border-bottom: 1px solid var(--ink-100); }
-.fees-table tbody tr:last-child { border-bottom: 0; }
-.fees-table tbody tr:hover { background: var(--blue-050); }
-.fees-table .note { display: block; font-size: 0.86rem; color: var(--ink-400); }
+.fee-nav a:hover { background: var(--cta); color: #fff; border-color: var(--cta); }
+
+/* Fee cards */
+.fee-cards {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: var(--sp-5); align-items: start;
+}
+.fee-card {
+  background: #fff; border: 1px solid var(--ink-100); border-radius: var(--radius-lg);
+  padding: var(--sp-5) var(--sp-5) var(--sp-4);
+  scroll-margin-top: calc(var(--header-h) + 1.5rem);
+  transition: box-shadow 0.3s var(--ease), border-color 0.3s ease;
+}
+.fee-card:hover { box-shadow: var(--shadow); border-color: var(--blue-100); }
+.fee-card:target { border-color: var(--cta); box-shadow: 0 0 0 3px var(--sky-100); }
+.fee-card__head { display: flex; gap: var(--sp-4); align-items: flex-start; margin-bottom: var(--sp-4); }
+.fee-card__icon {
+  flex: none; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+  background: var(--sky-100); color: var(--blue-600); border: 1px solid var(--sky-200);
+}
+.fee-card__icon svg { width: 22px; height: 22px; }
+.fee-card__title {
+  font-size: var(--step-1); line-height: 1.15; margin-bottom: 0.3rem;
+}
+.fee-card__blurb { font-size: 0.94rem; color: var(--ink-500); line-height: 1.55; }
+
+.fee-list { border-top: 1px solid var(--ink-100); }
+.fee-row {
+  display: grid; grid-template-columns: 1fr auto; gap: var(--sp-4);
+  align-items: baseline; padding: 0.8rem 0; border-bottom: 1px solid var(--ink-100);
+}
+.fee-row:last-child { border-bottom: 0; padding-bottom: 0.2rem; }
+.fee-name { font-weight: 500; color: var(--ink-900); }
+.fee-note { display: block; font-size: 0.84rem; color: var(--ink-400); margin-top: 0.15rem; }
+.fee-price {
+  font-family: var(--font-display); font-size: 1.15rem; font-weight: 500;
+  color: var(--blue-800); font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right;
+}
+.fee-from {
+  display: block; font-family: var(--font-body); font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-400); line-height: 1;
+  margin-bottom: 0.15rem;
+}
 
 /* --------------------------------------------------------------------------
    11. Team
@@ -540,7 +584,7 @@ a:hover { color: var(--blue-800); }
   background: #fff; border: 1px solid var(--ink-100);
   border-radius: var(--radius-lg); padding: var(--sp-5);
 }
-.quote__stars { color: var(--blue-400); letter-spacing: 0.15em; margin-bottom: var(--sp-3);
+.quote__stars { color: var(--blue-500); letter-spacing: 0.15em; margin-bottom: var(--sp-3);
                 font-size: 0.9rem; }
 .quote p { font-size: 1.02rem; color: var(--ink-700); line-height: 1.6; }
 .quote footer { margin-top: var(--sp-3); font-size: 0.88rem; color: var(--ink-400); }
@@ -609,16 +653,22 @@ a:hover { color: var(--blue-800); }
 @media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
 
 .stat-row {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-5);
-  text-align: center;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-5) var(--sp-6);
+  text-align: left;
+}
+.stat-row > div { position: relative; padding-left: 1.1rem; }
+.stat-row > div::before {
+  content: ""; position: absolute; left: 0; top: 0.15rem; width: 7px; height: 7px;
+  border-radius: 50%; background: var(--cta);
 }
 @media (max-width: 720px) { .stat-row { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .stat-row { grid-template-columns: 1fr; } }
 .stat__num {
-  font-family: var(--font-display); font-size: var(--step-3);
-  color: var(--blue-700); line-height: 1; margin-bottom: 0.35rem;
+  font-family: var(--font-display); font-size: var(--step-1); font-weight: 500;
+  color: var(--blue-800); line-height: 1.1; margin-bottom: 0.4rem; letter-spacing: -0.01em;
 }
 .section--dark .stat__num { color: var(--sky); }
-.stat__label { font-size: 0.88rem; color: var(--ink-500); letter-spacing: 0.02em; }
+.stat__label { font-size: 0.9rem; color: var(--ink-500); line-height: 1.45; }
 .section--dark .stat__label { color: var(--blue-200); }
 
 .checklist { list-style: none; padding: 0; display: grid; gap: var(--sp-3); }
@@ -795,3 +845,12 @@ a:hover { color: var(--blue-800); }
   -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
 }
 .seafront__cap svg { width: 15px; height: 15px; }
+
+/* Verified-review rating badge */
+.review-badge {
+  display: inline-flex; align-items: center; gap: 0.55rem; margin-top: var(--sp-4);
+  font-size: 0.98rem; color: var(--ink-500);
+}
+.review-badge strong { color: var(--blue-800); font-weight: 600; }
+.review-badge__stars { color: var(--blue-500); letter-spacing: 0.1em; font-size: 1.05rem; }
+.quote figcaption { color: var(--ink-400); font-weight: 500; }
