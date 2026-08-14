@@ -884,6 +884,8 @@ svg:not(.brand__logo):not(.seafront__img) { max-width: 2.75rem; max-height: 2.75
   background: var(--sky-100);
 }
 .smile-feature img { display: block; width: 100%; height: auto; }
+/* Nudge the hero photo up so it sits higher against the headline (desktop only) */
+@media (min-width: 901px) { .smile-feature { align-self: start; margin-top: -1.75rem; } }
 
 /* Icon tiles removed by request, cards read cleaner without them */
 .card__icon, .feature__icon { display: none; }
