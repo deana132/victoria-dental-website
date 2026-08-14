@@ -18,16 +18,22 @@
   --blue-500: #738bc4;
   --blue-400: #93a8d8;
   --blue-300: #b4c5e7;
-  --blue-200: #d3ddf1;
-  --blue-100: #e7ecf8;
-  --blue-050: #f5f7fc;
+  --blue-200: #cfe0ef;
+  --blue-100: #dced f5;
+  --blue-100: #dcedf5;
+  --blue-050: #eef7fc;
+
+  /* Pale sky tints straight off the logo — these give the site its light-blue wash */
+  --sky-050:  #f2fafd;
+  --sky-100:  #e3f3fa;
+  --sky-200:  #d3ecf5;
 
   /* Accent — the pale sky from the logo, not a third colour */
   --accent-ink:  #3d5497;
   --accent:      #cfe8f1;
   --accent-soft: #e2f2f8;
   --accent-line: #cfe8f1;
-  --accent-tint: #eef7fb;
+  --accent-tint: #eaf6fb;
 
   --ink-900: #111c26;
   --ink-700: #2d3b47;
@@ -150,7 +156,7 @@ a:hover { color: var(--blue-800); }
 
 .section { padding-block: var(--sp-9); }
 .section--tight { padding-block: var(--sp-8); }
-.section--tint { background: var(--blue-050); }
+.section--tint { background: var(--sky-100); }
 .section--sand { background: var(--accent-tint); }
 .section--dark { background: var(--blue-900); color: var(--blue-100); }
 .section--dark h2, .section--dark h3 { color: #fff; }
@@ -247,7 +253,7 @@ a:hover { color: var(--blue-800); }
 
 .site-header {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(255,255,255,0.92);
+  background: rgba(238, 247, 252, 0.9);
   backdrop-filter: saturate(180%) blur(12px);
   -webkit-backdrop-filter: saturate(180%) blur(12px);
   border-bottom: 1px solid var(--ink-100);
@@ -328,11 +334,17 @@ a:hover { color: var(--blue-800); }
 .hero {
   position: relative; overflow: hidden;
   background:
-    radial-gradient(1100px 520px at 88% -10%, var(--blue-100) 0%, transparent 60%),
-    radial-gradient(760px 420px at -5% 105%, var(--accent-tint) 0%, transparent 62%),
-    var(--paper-2);
+    linear-gradient(180deg, var(--sky-050) 0%, var(--sky-100) 100%),
+    var(--sky-050);
   padding-block: clamp(3.5rem, 7vw, 6.5rem);
 }
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(1100px 520px at 90% -12%, var(--sky-200) 0%, transparent 60%),
+    radial-gradient(720px 420px at -6% 108%, #ffffff 0%, transparent 60%);
+}
+.hero > .wrap { position: relative; }
 .hero__grid {
   display: grid; grid-template-columns: 1.05fr 0.95fr;
   gap: clamp(2rem, 5vw, 4.5rem); align-items: center;
@@ -359,7 +371,7 @@ a:hover { color: var(--blue-800); }
 .hero__card {
   position: relative; background: #fff; border-radius: var(--radius-xl);
   padding: clamp(1.5rem, 3vw, 2.25rem); box-shadow: var(--shadow-lg);
-  border: 1px solid var(--ink-100);
+  border: 1px solid #fff;
 }
 .hero__card h2 { font-size: var(--step-2); margin-bottom: var(--sp-2); }
 .hero__card .lede { font-size: var(--step-0); margin-bottom: var(--sp-5); }
@@ -390,10 +402,9 @@ a:hover { color: var(--blue-800); }
    -------------------------------------------------------------------------- */
 .page-head {
   background:
-    radial-gradient(900px 400px at 85% -20%, var(--blue-100) 0%, transparent 65%),
-    var(--paper-2);
+    linear-gradient(180deg, var(--sky-050), var(--sky-100));
   padding-block: clamp(2.75rem, 6vw, 4.5rem);
-  border-bottom: 1px solid var(--ink-100);
+  border-bottom: 1px solid var(--sky-200);
 }
 .page-head__inner { max-width: 760px; }
 .page-head h1 { font-size: var(--step-4); margin-bottom: var(--sp-4); }
@@ -763,3 +774,24 @@ a:hover { color: var(--blue-800); }
   .site-header, .topbar, .callbar, .cta-band, .site-footer { display: none !important; }
   body { color: #000; }
 }
+
+/* --------------------------------------------------------------------------
+   Southsea seafront illustration band
+   -------------------------------------------------------------------------- */
+.seafront { position: relative; line-height: 0; background: var(--sky-100); }
+.seafront__img {
+  display: block; width: 100%; height: clamp(200px, 26vw, 340px);
+  object-fit: cover; object-position: center 62%;
+}
+.seafront__cap {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding-bottom: var(--sp-4); line-height: 1.4;
+}
+.seafront__cap span {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(22, 35, 61, 0.62); color: #fff;
+  font-size: var(--step--1); font-weight: 500;
+  padding: 0.5rem 0.9rem; border-radius: 999px;
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+}
+.seafront__cap svg { width: 15px; height: 15px; }
