@@ -354,11 +354,7 @@ a:hover { color: var(--blue-800); }
 
 .hero__title { margin-bottom: var(--sp-4); max-width: 15ch; letter-spacing: -0.025em; }
 .hero__title .hl {
-  font-style: normal; color: var(--cta); position: relative; white-space: nowrap;
-}
-.hero__title .hl::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: -0.04em; height: 0.08em;
-  background: var(--cta); border-radius: 3px; opacity: 0.9;
+  font-style: normal; color: var(--cta); white-space: nowrap;
 }
 .hero__lede { max-width: 52ch; margin-bottom: var(--sp-6); }
 .hero__meta {
@@ -500,44 +496,50 @@ a:hover { color: var(--blue-800); }
 }
 .fee-nav a:hover { background: var(--cta); color: #fff; border-color: var(--cta); }
 
-/* Fee cards */
+/* Fee cards — a single, aligned price list so every column reads down the page */
 .fee-cards {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: var(--sp-5); align-items: start;
+  display: grid; grid-template-columns: 1fr; gap: var(--sp-5); align-items: start;
+  counter-reset: fee;
+}
+@media (min-width: 900px) {
+  .fee-cards { grid-template-columns: repeat(2, 1fr); gap: var(--sp-5) var(--sp-6); }
 }
 .fee-card {
   background: #fff; border: 1px solid var(--ink-100); border-radius: var(--radius-lg);
-  padding: var(--sp-5) var(--sp-5) var(--sp-4);
+  padding: var(--sp-5) var(--sp-6) var(--sp-5);
   scroll-margin-top: calc(var(--header-h) + 1.5rem);
   transition: box-shadow 0.3s var(--ease), border-color 0.3s ease;
 }
 .fee-card:hover { box-shadow: var(--shadow); border-color: var(--blue-100); }
 .fee-card:target { border-color: var(--cta); box-shadow: 0 0 0 3px var(--sky-100); }
-.fee-card__head { display: flex; gap: var(--sp-4); align-items: flex-start; margin-bottom: var(--sp-4); }
-.fee-card__icon {
-  flex: none; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
-  background: var(--sky-100); color: var(--blue-600); border: 1px solid var(--sky-200);
+.fee-card__head {
+  margin-bottom: var(--sp-4); padding-bottom: var(--sp-4);
+  border-bottom: 2px solid var(--sky-200);
 }
-.fee-card__icon svg { width: 22px; height: 22px; }
 .fee-card__title {
-  font-size: var(--step-1); line-height: 1.15; margin-bottom: 0.3rem;
+  font-size: var(--step-1); line-height: 1.15; margin-bottom: 0.4rem;
+  padding-left: 0.9rem; position: relative;
 }
-.fee-card__blurb { font-size: 0.94rem; color: var(--ink-500); line-height: 1.55; }
+.fee-card__title::before {
+  content: ""; position: absolute; left: 0; top: 0.15em; bottom: 0.15em;
+  width: 4px; border-radius: 2px; background: var(--cta);
+}
+.fee-card__blurb { font-size: 0.92rem; color: var(--ink-500); line-height: 1.55; }
 
-.fee-list { border-top: 1px solid var(--ink-100); }
+.fee-list { display: block; }
 .fee-row {
   display: grid; grid-template-columns: 1fr auto; gap: var(--sp-4);
-  align-items: baseline; padding: 0.8rem 0; border-bottom: 1px solid var(--ink-100);
+  align-items: baseline; padding: 0.7rem 0; border-bottom: 1px solid var(--ink-100);
 }
-.fee-row:last-child { border-bottom: 0; padding-bottom: 0.2rem; }
+.fee-row:last-child { border-bottom: 0; padding-bottom: 0; }
 .fee-name { font-weight: 500; color: var(--ink-900); }
 .fee-note { display: block; font-size: 0.84rem; color: var(--ink-400); margin-top: 0.15rem; }
 .fee-price {
-  font-family: var(--font-display); font-size: 1.15rem; font-weight: 500;
+  font-family: var(--font-display); font-size: 1.15rem; font-weight: 600;
   color: var(--blue-800); font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right;
 }
 .fee-from {
-  display: block; font-family: var(--font-body); font-size: 0.68rem; font-weight: 600;
+  display: block; font-family: var(--font-body); font-size: 0.66rem; font-weight: 600;
   letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-400); line-height: 1;
   margin-bottom: 0.15rem;
 }
@@ -861,3 +863,7 @@ a:hover { color: var(--blue-800); }
   background: var(--sky-100);
 }
 .smile-feature img { display: block; width: 100%; height: auto; }
+
+/* Icon tiles removed by request, cards read cleaner without them */
+.card__icon, .feature__icon { display: none; }
+.feature { gap: 0; }
