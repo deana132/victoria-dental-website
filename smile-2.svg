@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" role="img" aria-label="A happy patient with a bright, healthy smile">
+  <defs><radialGradient id="bgbobe6a" cx="50%" cy="40%" r="72%">
+    <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e3f3fa"/></radialGradient></defs>
+  <rect width="420" height="420" rx="20" fill="url(#bgbobe6a)"/>
+
+  <!-- neck + shoulders -->
+  <path d="M170 336 h80 v-40 a40 40 0 0 1 -80 0 Z" fill="#d3a276"/>
+  <path d="M104 420 Q104 350 210 344 Q316 350 316 420 Z" fill="#dfe9f2"/>
+
+  <!-- ears -->
+  <circle cx="98" cy="222" r="20" fill="#e3b892"/><circle cx="322" cy="222" r="20" fill="#e3b892"/>
+  <!-- head -->
+  <ellipse cx="210" cy="214" rx="120" ry="134" fill="#e3b892"/>
+  <path d="M88 262 Q74 108 210 94 Q346 108 332 262 Q326 196 318 172 Q300 128 210 124 Q120 128 102 172 Q94 196 88 262 Z" fill="#2f2a33"/>
+
+  <!-- cheeks -->
+  <ellipse cx="150" cy="242" rx="24" ry="15" fill="#e6a58f" opacity="0.55"/>
+  <ellipse cx="270" cy="242" rx="24" ry="15" fill="#e6a58f" opacity="0.55"/>
+
+  <!-- brows -->
+  <path d="M150 178 Q168 170 186 178" stroke="#2f2a33" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M234 178 Q252 170 270 178" stroke="#2f2a33" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <!-- eyes -->
+  <circle cx="168" cy="200" r="12.5" fill="#2f2b33"/><circle cx="252" cy="200" r="12.5" fill="#2f2b33"/>
+  <circle cx="172" cy="196" r="3.6" fill="#ffffff"/><circle cx="256" cy="196" r="3.6" fill="#ffffff"/>
+  <!-- nose -->
+  <path d="M206 214 Q198 232 210 240" stroke="#d3a276" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- smile -->
+  <path d="M150 258 Q210 270 270 258 Q252 314 210 318 Q168 314 150 258 Z" fill="#ffffff"/>
+  <path d="M150 258 Q210 270 270 258" stroke="#c67670" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M186 262 v20 M210 264 v22 M234 262 v20" stroke="#e2edf3" stroke-width="2.4"/>
+  <path d="M182 300 Q210 314 238 300 Q210 308 182 300 Z" fill="#c67670"/>
+  <path d="M258 250 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 Z" fill="#ffffff"/>
+  <circle cx="258" cy="250" r="11" fill="none" stroke="#ffffff" stroke-width="1.2" opacity="0.5"/>
+</svg>

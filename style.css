@@ -270,17 +270,16 @@ a:hover { color: var(--blue-800); }
 .brand { display: inline-flex; align-items: center; text-decoration: none; }
 .brand__logo {
   width: 190px; height: auto; flex: none; display: block;
-  /* The wordmark's true tint (#cfe8f1) all but vanishes on white, so on light
-     backgrounds it is stepped down one shade. The dark footer uses the real
-     brand colours. Change --logo-word here to restore the exact original. */
-  --logo-word: #a8d4e8;
-  --logo-sub: #738bc4;
+  /* Matches the practice's own signage: "Victoria" in solid brand blue,
+     "DENTAL PRACTICE" and the dot in the sign's pink. */
+  --logo-word: #3d5497;
+  --logo-sub: #d63d5e;
 }
 @media (max-width: 480px) { .brand__logo { width: 150px; } }
 .site-footer .brand__logo {
   width: 210px;
-  --logo-word: var(--sky);
-  --logo-sub: var(--blue-400);
+  --logo-word: var(--sky);   /* pale, for the dark footer */
+  --logo-sub: #ef8fa6;       /* lighter pink, legible on navy */
 }
 
 .nav { display: flex; align-items: center; gap: var(--sp-5); }
@@ -854,3 +853,11 @@ a:hover { color: var(--blue-800); }
 .review-badge strong { color: var(--blue-800); font-weight: 600; }
 .review-badge__stars { color: var(--blue-500); letter-spacing: 0.1em; font-size: 1.05rem; }
 .quote figcaption { color: var(--ink-400); font-weight: 500; }
+
+/* Cosmetic smile feature image */
+.smile-feature {
+  border-radius: var(--radius-xl); overflow: hidden;
+  box-shadow: var(--shadow-lg); border: 1px solid var(--sky-200);
+  background: var(--sky-100);
+}
+.smile-feature img { display: block; width: 100%; height: auto; }
