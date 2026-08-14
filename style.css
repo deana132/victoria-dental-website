@@ -755,6 +755,11 @@ a:hover { color: var(--blue-800); }
   body { padding-bottom: 58px; }
 }
 
+/* Safety net: no inline icon may ever balloon past a sane size, even if a
+   specific sizing rule is missing or the stylesheet is slow to apply. The
+   brand logo and full-width illustrations opt out. */
+svg:not(.brand__logo):not(.seafront__img) { max-width: 2.75rem; max-height: 2.75rem; }
+
 /* Floating call button — stays visible on scroll (desktop & tablet) */
 .call-fab {
   position: fixed; z-index: 95; right: 1.4rem; bottom: 1.4rem;
